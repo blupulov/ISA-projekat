@@ -51,6 +51,7 @@ public class BoatService implements IBoatService {
     }
 
     @Override
+    @Transactional
     public Boat saveBoat(BoatDto newBoat) {
         Boat boat = new Boat();
         boat.setName(newBoat.getName());

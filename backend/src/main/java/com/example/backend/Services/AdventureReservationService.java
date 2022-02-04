@@ -200,6 +200,7 @@ public class AdventureReservationService {
                 LocalDateTime.now());
     }
 
+    @Transactional
     public AdventureReservation markReservationAsEvaluated(long reservationId){
         AdventureReservation adventureReservation = findAdventureReservationById(reservationId);
         adventureReservation.setRated(true);
@@ -228,6 +229,7 @@ public class AdventureReservationService {
     }
 
 
+    @Transactional
     public AdventureReservation createFreeFastReservation(MakeFastReservationDto dto){
         AdventureReservation adventureReservation = makeAdventureReservation(dto);
         if(!isReservationInAvailableTimespanOfInstructor(adventureReservation, dto.getInstructorId()))
@@ -250,6 +252,7 @@ public class AdventureReservationService {
         return true;
     }
 
+    @Transactional
     public AdventureReservation cancelAdventureReservation(long id){
         AdventureReservation adventureReservation = findAdventureReservationById(id);
         LocalDateTime lastDateForCanceling = adventureReservation.getReservationStart().minusDays(3);
@@ -261,6 +264,7 @@ public class AdventureReservationService {
 
 
     //TODO: Rezervacija avanture
+    @Transactional
     public AdventureReservation customReserveAdventure(ReserveAdventureDto dto){
         AdventureReservation reservation = prepareCustomReservationForSaving(dto);
         if(reservation != null)
@@ -298,6 +302,8 @@ public class AdventureReservationService {
             return null;
         }
     }
+
+    @Transactional
     public AdventureReservation markReservationAsReported(long id){
         try {
             AdventureReservation reservation = findAdventureReservationById(id);

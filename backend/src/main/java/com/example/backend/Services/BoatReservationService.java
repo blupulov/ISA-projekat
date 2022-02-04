@@ -207,6 +207,7 @@ public class BoatReservationService {
         }
     }
 
+    @Transactional
     public BoatReservation markReservationAsReported(long id){
         BoatReservation reservation = findBoatReservationById(id);
         reservation.setReported(true);
@@ -460,6 +461,7 @@ public class BoatReservationService {
         return true;
     }
 
+    @Transactional
     public BoatReservation markReservationAsEvaluated(long reservationId){
         BoatReservation boatReservation = findBoatReservationById(reservationId);
         boatReservation.setRated(true);

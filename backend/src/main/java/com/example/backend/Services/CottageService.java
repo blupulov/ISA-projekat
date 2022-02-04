@@ -50,7 +50,9 @@ public class CottageService implements ICottageService {
     }
 
     @Override
+    @Transactional
     public Cottage saveCottage(CottageDto newCottage) {
+        try {
         Cottage cottage = new Cottage();
         cottage.setName(newCottage.getName());
         cottage.setAddress(new Address());
@@ -66,7 +68,11 @@ public class CottageService implements ICottageService {
         CottagePriceList priceList = new CottagePriceList();
         priceList.setPrice(newCottage.getPrice());
         cottage.setCottagePriceList(priceList);
-        return cottageRepository.save(cottage);
+        return save(cottage);
+        }catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @Override
@@ -90,6 +96,7 @@ public class CottageService implements ICottageService {
         }
     }
 
+    @Transactional
     public Cottage addAdditionalService(AdditionalServiceDto serviceDto){
         Cottage cottage = findById(serviceDto.getPriceList());
         AdditionalCottageService additionalService45 = new AdditionalCottageService();

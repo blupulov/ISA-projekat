@@ -58,7 +58,7 @@ public class UserService {
         return user;
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public boolean disableUserRegistration(long id, String reason){
         User user = userRepository.findOneById(id);
         try {
@@ -73,7 +73,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void answerOnRequestForDeleting(AnswerOnRequestForDeletingDto dto) {
         DeleteProfileRequest request = deleteProfileRequestService.markDeleteProfileRequestAsReviewed(dto.getRequestId());
 

@@ -45,6 +45,7 @@ public class DeleteProfileRequestService {
         return save(request);
     }
 
+    @Transactional
     public DeleteProfileRequest makeDeleteProfileRequest(MakeDeleteProfileRequestDto dto){
         DeleteProfileRequest deleteProfileRequest = new DeleteProfileRequest();
         deleteProfileRequest.setRequestText(dto.getReason());

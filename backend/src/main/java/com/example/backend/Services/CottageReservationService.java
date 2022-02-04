@@ -447,12 +447,14 @@ public class CottageReservationService {
         return true;
     }
 
+    @Transactional
     public CottageReservation markReservationAsReported(long id){
         CottageReservation reservation = findCottageReservationById(id);
         reservation.setReported(true);
         return save(reservation);
     }
 
+    @Transactional
     public CottageReservation markReservationAsEvaluated(long reservationId){
         CottageReservation cottageReservation = findCottageReservationById(reservationId);
         cottageReservation.setRated(true);
